@@ -11,6 +11,10 @@ public class SingletonTest02 {
         System.out.println(instance == instance2); // true
         System.out.println("instance.hashCode=" + instance.hashCode());
         System.out.println("instance2.hashCode=" + instance2.hashCode());
+
+
+        // µ¥ÀýÄ£Ê½
+        Runtime runtime = Runtime.getRuntime();
     }
 
 }
