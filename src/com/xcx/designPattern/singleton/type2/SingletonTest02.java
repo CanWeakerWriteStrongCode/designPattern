@@ -28,7 +28,7 @@ class Singleton implements Cloneable, Serializable {
     private Singleton() {
         // 防御反射攻击
         if (null != instance) {
-            throw new RuntimeException("饿汉式单例模式不允许重复构造对象");
+            throw new RuntimeException("饿汉式单例模式不允许用反射重复构造对象");
         }
     }
 
