@@ -9,8 +9,6 @@ public class PizzaStore {
 		//new OrderPizza(new BJFactory());
 		new OrderPizza(new LDFactory());
 
-		// 工厂模式
-		Calendar instance = Calendar.getInstance();
 	}
 
 }
