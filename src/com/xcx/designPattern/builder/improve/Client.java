@@ -4,9 +4,9 @@ public class Client {
 	public static void main(String[] args) {
 		
 		//盖普通房子
-		CommonHouse commonHouse = new CommonHouse();
+		CommonHouseBuilder commonHouseBuilder = new CommonHouseBuilder();
 		//准备创建房子的指挥者
-		HouseDirector houseDirector = new HouseDirector(commonHouse);
+		HouseDirector houseDirector = new HouseDirector(commonHouseBuilder);
 		
 		//完成盖房子，返回产品(普通房子)
 		House house = houseDirector.constructHouse();
