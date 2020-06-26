@@ -1,6 +1,6 @@
 package com.xcx.designPattern.builder.improve;
 
-public class HighBuilding extends HouseBuilder {
+public class HighHouseBuilder extends HouseBuilder {
 
 	@Override
 	public void buildBasic() {

@@ -15,9 +15,9 @@ public class Client {
 		
 		System.out.println("--------------------------");
 		//盖高楼
-		HighBuilding highBuilding = new HighBuilding();
+		HighHouseBuilder highHouseBuilder = new HighHouseBuilder();
 		//重置建造者
-		houseDirector.setHouseBuilder(highBuilding);
+		houseDirector.setHouseBuilder(highHouseBuilder);
 		//完成盖房子，返回产品(高楼)
 		houseDirector.constructHouse();
 		
