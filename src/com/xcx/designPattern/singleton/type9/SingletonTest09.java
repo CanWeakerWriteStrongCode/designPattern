@@ -16,7 +16,7 @@ public class SingletonTest09 {
 }
 
 class Singleton {
-    private static final AtomicReference<Singleton> INSTANCE = new AtomicReference<>();
+    private static AtomicReference<Singleton> INSTANCE = new AtomicReference<>();
 
     private Singleton() {
     }

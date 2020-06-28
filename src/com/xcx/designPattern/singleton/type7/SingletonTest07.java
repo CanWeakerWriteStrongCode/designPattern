@@ -65,7 +65,7 @@ class Singleton implements Cloneable, Serializable {
 
     //写一个静态内部类,该类中有一个静态属性 Singleton
     private static class SingletonHolder {
-        private static final Singleton INSTANCE = new Singleton();
+        private static Singleton INSTANCE = new Singleton();
     }
 
     //提供一个静态的公有方法，直接返回SingletonInstance.INSTANCE

@@ -5,8 +5,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class SingletonTest11 {
     public static void main(String[] args) {
-        ContainerSingleton instance = (ContainerSingleton) ContainerSingleton.getBean("com.xcx.designPattern.singleton.type11.ContainerSingleton");
-        ContainerSingleton instance2 = (ContainerSingleton) ContainerSingleton.getBean("com.xcx.designPattern.singleton.type11.ContainerSingleton");
+        Singleton instance = (Singleton) Singleton.getBean("com.xcx.designPattern.singleton.type11.Singleton");
+        Singleton instance2 = (Singleton) Singleton.getBean("com.xcx.designPattern.singleton.type11.Singleton");
         System.out.println(instance == instance2);
 
         System.out.println(instance.hashCode());
@@ -16,26 +16,29 @@ public class SingletonTest11 {
 }
 
 
-class ContainerSingleton {
+class Singleton {
 
-    private ContainerSingleton () {}
+    private Singleton() {
+    }
 
     private static Map<String, Object> ioc = new ConcurrentHashMap<String, Object>();
 
     public static Object getBean(String className) {
-        synchronized (ioc) {
-            if (!ioc.containsKey(className)) {
-                Object obj = null;
-                try {
-                    obj = Class.forName(className).newInstance();
-                    ioc.put(className, obj);
-                } catch (Exception e) {
-                    e.printStackTrace();
+
+        if (!ioc.containsKey(className)) {
+            synchronized (ioc) {
+                if (!ioc.containsKey(className)) {
+                    Object obj = null;
+                    try {
+                        obj = Class.forName(className).newInstance();
+                        ioc.put(className, obj);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    // return obj; 为了这点速度没必要吧
                 }
-                return obj;
-            } else {
-                return ioc.get(className);
             }
         }
+        return ioc.get(className);
     }
 }

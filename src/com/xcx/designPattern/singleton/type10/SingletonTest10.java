@@ -16,7 +16,7 @@ public class SingletonTest10 {
 
 class Singleton {
 
-    private static final ThreadLocal<Singleton> threadLocalInstance = new ThreadLocal<Singleton>() {
+    private static ThreadLocal<Singleton> threadLocalInstance = new ThreadLocal<Singleton>() {
         @Override
         protected Singleton initialValue() {
             return new Singleton();

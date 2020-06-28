@@ -34,7 +34,7 @@ class Singleton implements Cloneable, Serializable {
 
 
     //2.本类内部创建对象实例
-    private static final Singleton instance;
+    private static Singleton instance;
 
     static { // 在静态代码块中，创建单例对象
         instance = new Singleton();
