@@ -1,4 +1,4 @@
-package com.xcx.designPattern.singleton.type7;
+package com.xcx.designPattern.singleton.initializingOnDemandHolderIdiomSingleton;
 
 
 import java.io.*;
@@ -7,27 +7,27 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class SingletonTest07 {
+public class InitializingOnDemandHolderIdiomSingletonTest {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, IllegalAccessException, InvocationTargetException, InstantiationException, CloneNotSupportedException {
         System.out.println("使用静态内部类完成单例模式");
-        Singleton instance = Singleton.getInstance();
-        Singleton instance2 = Singleton.getInstance();
+        InitializingOnDemandHolderIdiomSingleton instance = InitializingOnDemandHolderIdiomSingleton.getInstance();
+        InitializingOnDemandHolderIdiomSingleton instance2 = InitializingOnDemandHolderIdiomSingleton.getInstance();
 
 
         // 序列化
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("d:\\single.obj"));
         oos.writeObject(instance);
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("d:\\single.obj")));
-        Singleton instance3 = (Singleton) ois.readObject();
+        InitializingOnDemandHolderIdiomSingleton instance3 = (InitializingOnDemandHolderIdiomSingleton) ois.readObject();
 
         // 反射
-        Class<?> singletonClass = Singleton.class;
+        Class<?> singletonClass = InitializingOnDemandHolderIdiomSingleton.class;
         Constructor<?>[] constructors = singletonClass.getDeclaredConstructors();
         constructors[0].setAccessible(true);
-        Singleton instance4 = (Singleton) constructors[0].newInstance();
+        InitializingOnDemandHolderIdiomSingleton instance4 = (InitializingOnDemandHolderIdiomSingleton) constructors[0].newInstance();
 
-        Singleton instance5 = (Singleton) instance.clone();
+        InitializingOnDemandHolderIdiomSingleton instance5 = (InitializingOnDemandHolderIdiomSingleton) instance.clone();
 
         System.out.println(instance == instance2); // true
         System.out.println(instance == instance3); // true
@@ -43,14 +43,14 @@ public class SingletonTest07 {
 }
 
 // 静态内部类完成， 推荐使用，懒汉模式无法防止反射攻击
-class Singleton implements Cloneable, Serializable {
+class InitializingOnDemandHolderIdiomSingleton implements Cloneable, Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private static boolean firstConstructFlag = true;
 
     //构造器私有化
-    private Singleton() {
+    private InitializingOnDemandHolderIdiomSingleton() {
         // 如果加载后反射，防御了反射攻击。先反射后加载无法防御
         checkFirstConstruct();
     }
@@ -65,11 +65,11 @@ class Singleton implements Cloneable, Serializable {
 
     //写一个静态内部类,该类中有一个静态属性 Singleton
     private static class SingletonHolder {
-        private static Singleton INSTANCE = new Singleton();
+        private static InitializingOnDemandHolderIdiomSingleton INSTANCE = new InitializingOnDemandHolderIdiomSingleton();
     }
 
     //提供一个静态的公有方法，直接返回SingletonInstance.INSTANCE
-    public static Singleton getInstance() {
+    public static InitializingOnDemandHolderIdiomSingleton getInstance() {
 
         return SingletonHolder.INSTANCE;
     }
@@ -96,21 +96,3 @@ class Singleton implements Cloneable, Serializable {
 
 }
 
-class SingletonLock {
-    private static SingletonLock instance = null;
-    private static Lock lock = new ReentrantLock();
-
-    private SingletonLock() {
-    }
-
-    public static SingletonLock getInstance() {
-        if (instance == null) {
-            lock.lock(); // 显式调用，手动加锁
-            if (instance == null) {
-                instance = new SingletonLock();
-            }
-            lock.unlock(); // 显式调用，手动解锁
-        }
-        return instance;
-    }
-}

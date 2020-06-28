@@ -1,9 +1,9 @@
-package com.xcx.designPattern.singleton.type8;
+package com.xcx.designPattern.singleton.enumSingleton;
 
-public class SingletonTest08 {
+public class enumSingletonTest {
     public static void main(String[] args) {
-        Singleton instance = Singleton.INSTANCE;
-        Singleton instance2 = Singleton.INSTANCE;
+        enumSingleton instance = enumSingleton.INSTANCE;
+        enumSingleton instance2 = enumSingleton.INSTANCE;
         System.out.println(instance == instance2);
 
         System.out.println(instance.hashCode());
@@ -14,7 +14,7 @@ public class SingletonTest08 {
 }
 
 //使用枚举，可以实现单例, 最终推荐
-enum Singleton {
+enum enumSingleton {
     INSTANCE;//只有一个属性
 
     public void sayOK() {

@@ -1,12 +1,12 @@
-package com.xcx.designPattern.singleton.type4;
+package com.xcx.designPattern.singleton.lazyLoadSingleton;
 
 
-public class SingletonTest04 {
+public class LazyLoadSingletonTest {
 
 	public static void main(String[] args) {
 		System.out.println("懒汉式2 ， 线程安全~");
-		Singleton instance = Singleton.getInstance();
-		Singleton instance2 = Singleton.getInstance();
+		LazyLoadSingleton instance = LazyLoadSingleton.getInstance();
+		LazyLoadSingleton instance2 = LazyLoadSingleton.getInstance();
 		System.out.println(instance == instance2); // true
 		System.out.println("instance.hashCode=" + instance.hashCode());
 		System.out.println("instance2.hashCode=" + instance2.hashCode());
@@ -15,16 +15,16 @@ public class SingletonTest04 {
 }
 
 // 懒汉式(线程安全，同步方法)
-class Singleton {
-	private static Singleton instance;
+class LazyLoadSingleton {
+	private static LazyLoadSingleton instance;
 	
-	private Singleton() {}
+	private LazyLoadSingleton() {}
 	
 	//提供一个静态的公有方法，加入同步处理的代码，解决线程安全问题
 	//即懒汉式
-	public static synchronized Singleton getInstance() {
+	public static synchronized LazyLoadSingleton getInstance() {
 		if(instance == null) {
-			instance = new Singleton();
+			instance = new LazyLoadSingleton();
 		}
 		return instance;
 	}

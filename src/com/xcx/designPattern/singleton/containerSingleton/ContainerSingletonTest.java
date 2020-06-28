@@ -1,12 +1,12 @@
-package com.xcx.designPattern.singleton.type11;
+package com.xcx.designPattern.singleton.containerSingleton;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class SingletonTest11 {
+public class ContainerSingletonTest {
     public static void main(String[] args) {
-        Singleton instance = (Singleton) Singleton.getBean("com.xcx.designPattern.singleton.type11.Singleton");
-        Singleton instance2 = (Singleton) Singleton.getBean("com.xcx.designPattern.singleton.type11.Singleton");
+        ContainerSingleton instance = (ContainerSingleton) ContainerSingleton.getBean("com.xcx.designPattern.singleton.type11.Singleton");
+        ContainerSingleton instance2 = (ContainerSingleton) ContainerSingleton.getBean("com.xcx.designPattern.singleton.type11.Singleton");
         System.out.println(instance == instance2);
 
         System.out.println(instance.hashCode());
@@ -16,9 +16,9 @@ public class SingletonTest11 {
 }
 
 
-class Singleton {
+class ContainerSingleton {
 
-    private Singleton() {
+    private ContainerSingleton() {
     }
 
     private static Map<String, Object> ioc = new ConcurrentHashMap<String, Object>();

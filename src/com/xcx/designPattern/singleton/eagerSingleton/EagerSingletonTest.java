@@ -1,11 +1,11 @@
-package com.xcx.designPattern.singleton.type1;
+package com.xcx.designPattern.singleton.eagerSingleton;
 
-public class SingletonTest01 {
+public class EagerSingletonTest {
 
     public static void main(String[] args) {
         //测试
-        Singleton instance = Singleton.getInstance();
-        Singleton instance2 = Singleton.getInstance();
+        EagerSingleton instance = EagerSingleton.getInstance();
+        EagerSingleton instance2 = EagerSingleton.getInstance();
         System.out.println(instance == instance2); // true
         System.out.println("instance.hashCode=" + instance.hashCode());
         System.out.println("instance2.hashCode=" + instance2.hashCode());
@@ -15,18 +15,18 @@ public class SingletonTest01 {
 
 //饿汉式(静态变量)
 
-class Singleton {
+class EagerSingleton {
 
     //1. 构造器私有化, 外部能new
-    private Singleton() {
+    private EagerSingleton() {
 
     }
 
     //2.本类内部创建对象实例
-    private static Singleton instance = new Singleton();
+    private static EagerSingleton instance = new EagerSingleton();
 
     //3. 提供一个公有的静态方法，返回实例对象
-    public static Singleton getInstance() {
+    public static EagerSingleton getInstance() {
         return instance;
     }
 

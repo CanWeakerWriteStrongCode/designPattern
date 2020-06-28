@@ -1,12 +1,11 @@
-package com.xcx.designPattern.singleton.type9;
+package com.xcx.designPattern.singleton.casSingleton;
 
-import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class SingletonTest09 {
+public class CASSingletonTest {
     public static void main(String[] args) {
-        Singleton instance = Singleton.getInstance();
-        Singleton instance2 = Singleton.getInstance();
+        CASSingleton instance = CASSingleton.getInstance();
+        CASSingleton instance2 = CASSingleton.getInstance();
         System.out.println(instance == instance2);
 
         System.out.println(instance.hashCode());
@@ -15,19 +14,19 @@ public class SingletonTest09 {
 
 }
 
-class Singleton {
-    private static AtomicReference<Singleton> INSTANCE = new AtomicReference<>();
+class CASSingleton {
+    private static AtomicReference<CASSingleton> INSTANCE = new AtomicReference<>();
 
-    private Singleton() {
+    private CASSingleton() {
     }
 
-    public static Singleton getInstance() {
+    public static CASSingleton getInstance() {
         for (; ; ) {
-            Singleton instance = INSTANCE.get();
+            CASSingleton instance = INSTANCE.get();
             if (instance != null) {
                 return instance;
             }
-            instance = new Singleton();
+            instance = new CASSingleton();
             if (INSTANCE.compareAndSet(null, instance)) {
                 return instance;
             }
