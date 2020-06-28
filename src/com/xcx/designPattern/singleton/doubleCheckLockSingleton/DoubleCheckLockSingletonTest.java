@@ -20,6 +20,7 @@ public class DoubleCheckLockSingletonTest {
 
 // 懒汉式(线程安全，同步方法)
 class DoubleCheckLockSingleton {
+    // volatile 1.5版本后才能禁止指令重排
     private static volatile DoubleCheckLockSingleton instance;
 
     private DoubleCheckLockSingleton() {
