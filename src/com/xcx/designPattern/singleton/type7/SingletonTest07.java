@@ -4,6 +4,8 @@ package com.xcx.designPattern.singleton.type7;
 import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class SingletonTest07 {
 
@@ -92,4 +94,23 @@ class Singleton implements Cloneable, Serializable {
         return getInstance();
     }
 
+}
+
+class SingletonLock {
+    private static SingletonLock instance = null;
+    private static Lock lock = new ReentrantLock();
+
+    private SingletonLock() {
+    }
+
+    public static SingletonLock getInstance() {
+        if (instance == null) {
+            lock.lock(); // 显式调用，手动加锁
+            if (instance == null) {
+                instance = new SingletonLock();
+            }
+            lock.unlock(); // 显式调用，手动解锁
+        }
+        return instance;
+    }
 }
