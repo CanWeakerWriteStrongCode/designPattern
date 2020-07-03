@@ -30,6 +30,8 @@ public class Client {
 		webSite4.use(new User("king"));
 		
 		System.out.println("网站的分类共=" + factory.getWebSiteCount());
+
+		Integer integer = new Integer(1);
 	}
 
 }
