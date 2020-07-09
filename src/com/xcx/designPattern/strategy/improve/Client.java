@@ -1,5 +1,8 @@
 package com.xcx.designPattern.strategy.improve;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Client {
 
 	public static void main(String[] args) {
@@ -17,6 +20,8 @@ public class Client {
 		pekingDuck.setFlyBehavior(new NoFlyBehavior());
 		System.out.println("北京鸭的实际飞翔能力");
 		pekingDuck.fly();
+
+		List<String> strings = Arrays.asList("a", "b");
 	}
 
 }
